@@ -86,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607706071991</updated>
-      <workItem from="1607706074912" duration="5065000" />
+      <workItem from="1607706074912" duration="11045000" />
     </task>
     <servers />
   </component>
@@ -108,22 +108,22 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="459" height="330" key="GridCell.Tab.0.bottom" timestamp="1607712082571">
+    <state width="459" height="330" key="GridCell.Tab.0.bottom" timestamp="1607789740743">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="459" height="330" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1607712082571" />
-    <state width="459" height="330" key="GridCell.Tab.0.center" timestamp="1607712082570">
+    <state width="459" height="330" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1607789740743" />
+    <state width="459" height="330" key="GridCell.Tab.0.center" timestamp="1607789740742">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="459" height="330" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1607712082570" />
-    <state width="459" height="330" key="GridCell.Tab.0.left" timestamp="1607712082570">
+    <state width="459" height="330" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1607789740742" />
+    <state width="459" height="330" key="GridCell.Tab.0.left" timestamp="1607789740740">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="459" height="330" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1607712082570" />
-    <state width="459" height="330" key="GridCell.Tab.0.right" timestamp="1607712082571">
+    <state width="459" height="330" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1607789740740" />
+    <state width="459" height="330" key="GridCell.Tab.0.right" timestamp="1607789740743">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="459" height="330" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1607712082571" />
+    <state width="459" height="330" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1607789740743" />
     <state x="221" y="73" key="SettingsEditor" timestamp="1607707514504">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -134,6 +134,6 @@
     <state x="383" y="167" width="672" height="678" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1607707198811" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/leetcodedaily$main.coverage" NAME="main Coverage Results" MODIFIED="1607712082560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/leetcodedaily$main.coverage" NAME="main Coverage Results" MODIFIED="1607789740725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
