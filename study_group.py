@@ -40,7 +40,7 @@ def lateRide(n):
     return result
 
 
-print(f'lateRide(808): {lateRide(n)}')
+print(f'lateRide(n): {lateRide(n)}')
 
 """
 Below we will define an n-interesting polygon. Your task is to find the area of a polygon for a given n.
@@ -67,7 +67,7 @@ def shapeArea(n):
     return n ** 2 + (n - 1) ** 2
 
 
-print(f'shapeArea(3): {shapeArea(n)}')
+print(f'shapeArea(n): {shapeArea(n)}')
 
 """
 Note: Avoid using built-in std::nth_element (or analogous built-in functions in languages other than C++) when solving this challenge. Implement them yourself, since this is what you would be asked to do during a real interview.
@@ -103,7 +103,7 @@ def kthLargestElement(nums, k):
 
 
 print(
-    f'kthLargestElement(nums = [7, 6, 5, 4, 3, 2, 1], k = 2): {kthLargestElement(nums, k)}')
+    f'kthLargestElement(nums, k): {kthLargestElement(nums, k)}')
 
 """
 Given an absolute file path (Unix-style), shorten it to the format /<dir1>/<dir2>/<dir3>/....
@@ -145,55 +145,68 @@ def simplifyPath(path):
     cur_path = ""
     # init array to hold each path
     path_arr = []
-
     # iterate the length of the path
     for i in range(1, len(path)):
         # if the current character is not '/'
         if path[i] != "/":
             # add the current character to the current path
             cur_path += path[i]
+        #  at this point we have the entire current path
         else:
-            # if the current character is '/' we can add the current path to
-            # the path array and reset the current path to ''
-            path_arr.append(cur_path)
+            # if the current path is a directory ( not '.' or '..' or empty string)
+            if cur_path != ".." and cur_path != "." and cur_path != "":
+                # add the current path to the list of paths
+                path_arr.append(cur_path)
+                # reset the current path
+                cur_path = ""
+            # if the current path is '..' pop off the top of the stack as long
+            # the stack is not empty
+            elif cur_path == ".." and len(path_arr) != 0:
+                path_arr.pop()
+                # reset the current path
+                cur_path = ""
             cur_path = ""
-    # init array to hold paths without './'
-    cleaned_paths = []
-    # iterate the path_arr
+    # initialize an empty string to hold our result
+    result = "/"
+    # iterate the list of paths
     for i in range(len(path_arr)):
-        # if the current character is not '.'
-        if path_arr[i] != ".":
-            # add the path to the cleaned paths array
-            cleaned_paths.append(path_arr[i])
-    # init array to hold the final paths
-    final_paths = []
-    # iterate the cleaned paths
-    for i in range(len(cleaned_paths)):
-        # if the current path is not '..'
-        if cleaned_paths[i] != "..":
-            # add it to the final paths array
-            final_paths.append(cleaned_paths[i])
+        # if we are not at the last path in the list
+        if i != len(path_arr) - 1:
+            # add the path followed by '/' to the result
+            result += path_arr[i] + "/"
+        # if we are at the last path
         else:
-            # else if the current path IS '..' and the length of final paths
-            # is not 0
-            if len(final_paths) != 0:
-                # we can pop the last path added off of the final paths array
-                final_paths.pop()
-
-    # init result string to hold our final result
-    result = ""
-    # for each directory in final paths array
-    for dir in final_paths:
-        # if the dir is not an empty string
-        if dir != "":
-            # add it to the result prepended with a '/'
-            result += ("/" + dir)
-    # if the result is an empty string
-    if result == "":
-        # return '/'
-        return "/"
-    # return the result string
+            # only add the path without the trailing '/'
+            result += path_arr[i]
+    # return the result
     return result
 
 
 print(f'simplifyPath(path = "/home/a/./x/../b//c/"): {simplifyPath(path)}')
+
+
+def maxDepth(s):
+    # init results and current equal to 0
+    res = 0
+    cur = 0
+    # iterate chars in s
+    for char in s:
+        # if char is opening paren
+        if char == '(':
+            # add 1 to current streak of nested parens
+            cur += 1
+            # set result equal to whatever is more between the current result
+            # or current streak
+            res = max(res, cur)
+        # each time we hit closing paren we close the streak of nested parens
+        # by 1
+        if char == ')':
+            cur -= 1
+    # return the result
+    return res
+
+
+s = "(1+2)/(5+((4-9+8)*((1+8+(5*7)*4)/(7+9-5)))/(7/3-8-4-8))"
+
+print(f'maxDepth(s), '
+      f'{maxDepth(s)}')
