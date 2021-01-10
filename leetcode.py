@@ -869,3 +869,96 @@ def restoreString(s, indices):
 
 # print(f'restoreString(codeleet, [4,5,6,7,0,2,1,3]: {restoreString(s, indices)}')
 
+"""
+You are given an array of strings words and a string chars.
+
+A string is good if it can be formed by characters from chars (each character can only be used once).
+
+Return the sum of lengths of all good strings in words.
+
+ 
+
+Example 1:
+
+Input: words = ["cat","bt","hat","tree"], chars = "atach"
+Output: 6
+Explanation: 
+The strings that can be formed are "cat" and "hat" so the answer is 3 + 3 = 6.
+Example 2:
+
+Input: words = ["hello","world","leetcode"], chars = "welldonehoneyr"
+Output: 10
+Explanation: 
+The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
+"""
+words = ["cat","bt","hat","tree"]
+chars = "atach"
+
+def countCharacters(words, chars):
+    # for each word in words check if it can be made from the chars only
+    # using a specific char once
+    result = 0
+    for word in words:
+        good_word = True
+        chars_copy = list(chars)
+        for char in word:
+            if char not in chars_copy:
+                good_word = False
+                break
+            else:
+                chars_copy.remove(char)
+        if good_word:
+            result += len(word)
+    return result
+
+# print(f'countChars: {countCharacters(words, chars)}')
+
+"""
+You are playing the following Nim Game with your friend:
+
+Initially, there is a heap of stones on the table.
+You and your friend will alternate taking turns, and you go first.
+On each turn, the person whose turn it is will remove 1 to 3 stones from the heap.
+The one who removes the last stone is the winner.
+Given n, the number of stones in the heap, return true if you can win the game assuming both you and your friend play optimally, otherwise return false.
+
+ 
+
+Example 1:
+
+Input: n = 4
+Output: false
+Explanation: These are the possible outcomes:
+1. You remove 1 stone. Your friend removes 3 stones, including the last stone. Your friend wins.
+2. You remove 2 stones. Your friend removes 2 stones, including the last stone. Your friend wins.
+3. You remove 3 stones. Your friend removes the last stone. Your friend wins.
+In all outcomes, your friend wins.
+Example 2:
+
+Input: n = 1
+Output: true
+Example 3:
+
+Input: n = 2
+Output: true
+"""
+
+def canWinNim(n):
+    # if there are only 4 stones you can not win in any scenario so return False
+    if n == 4:
+        return False
+    if n < 4:
+        return True
+    remaining = 0
+    my_turn = True
+    # if remaining stones are 11 or more, take 3
+
+
+
+
+
+
+
+
+n = 5
+print(f'canWinNim: {canWinNim(n)}')
