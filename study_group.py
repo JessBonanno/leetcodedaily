@@ -1,152 +1,72 @@
 """
-Given an array nums, we call (i, j) an important reverse pair if i < j and nums[i] > 2*nums[j].
+On a 2D plane, there are n points with integer coordinates points[i] = [xi, yi]. Return the minimum time in seconds to visit all the points in the order given by points.
 
-You need to return the number of important reverse pairs in the given array.
+You can move according to these rules:
 
-Example1:
-
-Input: [1,3,2,3,1]
-Output: 2
-Example2:
-
-Input: [2,4,3,5,1]
-Output: 3
-Note:
-The length of the given array will not exceed 50,000.
-All the numbers in the input array are in the range of 32-bit integer.
-"""
-
-
-def reversePairs(nums):
-    # EDGE CASE if the array length is less than 2 return 0
-    if len(nums) < 2:
-        return 0
-    # init i to 0 and j to 1
-    i = 0
-    j = 1
-    # init count for reverse pairs found
-    count = 0
-    # iterate the array
-    while i <= len(nums) - 1:
-        # check if i is less than j AND nums[i] is greater than 2 * nums[j]
-        if i < j and nums[i] > 2 * nums[j]:
-            # if so increment the count
-            count += 1
-        # when j reaches the end
-        if j == len(nums) - 1:
-            # increment i
-            i += 1
-            # reset j
-            j = 0
-        else:
-            # else just increment j
-            j += 1
-    # return count of pairs found
-    return count
-
-
-nums = [1, 3, 2, 3, 1]
-print(f'reversePairs(nums): {reversePairs(nums)}')
-
-"""
-958. Check Completeness of a Binary Tree
-Medium
-
-1072
-
-14
-
-Add to List
-
-Share
-Given the root of a binary tree, determine if it is a complete binary tree.
-
-In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
-
+In 1 second, you can either:
+move vertically by one unit,
+move horizontally by one unit, or
+move diagonally sqrt(2) units (in other words, move one unit vertically then one unit horizontally in 1 second).
+You have to visit the points in the same order as they appear in the array.
+You are allowed to pass through points that appear later in the order, but these do not count as visits.
 
 
 Example 1:
 
 
-Input: root = [1,2,3,4,5,6]
-Output: true
-Explanation: Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last level ({4, 5, 6}) are as far left as possible.
+Input: points = [[1,1],[3,4],[-1,0]]
+Output: 7
+Explanation: One optimal path is [1,1] -> [2,2] -> [3,3] -> [3,4] -> [2,3] -> [1,2] -> [0,1] -> [-1,0]
+Time from [1,1] to [3,4] = 3 seconds
+Time from [3,4] to [-1,0] = 4 seconds
+Total time = 7 seconds
 Example 2:
 
-
-Input: root = [1,2,3,4,5,null,7]
-Output: false
-Explanation: The node with value 7 isn't as far left as possible.
-
-
-Constraints:
-
-The number of nodes in the tree is in the range [1, 100].
-1 <= Node.val <= 1000
+Input: points = [[3,2],[-2,2]]
+Output: 5
 """
 
+points = [[3, 2], [-2, 2]]
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def isCompleteTree(self, root: TreeNode) -> bool:
-        # we want to check each node for a right child
-        # if a right child exists and no left child exists we can return false
-        # if the left subtree is missing one or both children where the right
-        # subtree at that level has children return false
 
-        # init case where a node has no right child
-        no_right_child = False
-        # init case where a node has no children
-        no_children = False
-        # init queue for unexamined nodes
-        queue = []
-        # add root to queue
-        queue.append(root)
-        # breadth first search
-        while len(queue) != 0:
-            # current node to examine is taken from front of queue
-            cur = queue.pop(0)
-            # if we have already examined a node with no children or a left
-            # child with no right child
-            if no_right_child == True or no_children == True:
-                # if current node has no left child return False
-                if cur.left is not None:
-                    return False
-            # if the current node has no right child and has a left child
-            if cur.right is None and cur.left is not None:
-                # mark no right child as true
-                no_right_child = True
-                # add left child to queue if it exists
-                if cur.left is not None:
-                    queue.append(cur.left)
-                # add right child to queue if it exists
-                if cur.right is not None:
-                    queue.append(cur.right)
-            # if current node has no children
-            if cur.right is None and cur.left is None:
-                # mark no children as true
-                no_children = True
-                # add left child to queue if it exists
-                if cur.left is not None:
-                    queue.append(cur.left)
-                # add right child to queue if it exists
-                if cur.right is not None:
-                    queue.append(cur.right)
-            # if current node has a right child but no left child
-            if cur.right is not None and cur.left is None:
-                # return false
-                return False
-            # else append children to the queue if they exist
-            else:
-                if cur.left is not None:
-                    queue.append(cur.left)
-                if cur.right is not None:
-                    queue.append(cur.right)
-        # if we come out of the while loop never reaching false we can return
-        # true
-        return True
+# points = [[559,511],[932,618],[-623,-443],[431,91],[838,-127],[773,-917],[-500,-910],[830,-417],[-870,73],[-864,-600],[450,535],[-479,-370],[856,573],[-549,369],[529,-462],[-839,-856],[-515,-447],[652,197],[-83,345],[-69,423],[310,-737],[78,-201],[443,958],[-311,988],[-477,30],[-376,-153],[-272,451],[322,-125],[-114,-214],[495,33],[371,-533],[-393,-224],[-405,-633],[-693,297],[504,210],[-427,-231],[315,27],[991,322],[811,-746],[252,373],[-737,-867],[-137,130],[507,380],[100,-638],[-296,700],[341,671],[-944,982],[937,-440],[40,-929],[-334,60],[-722,-92],[-35,-852],[25,-495],[185,671],[149,-452]]
+# Output
+# 43394
+
+# TODO complete this solution, its not working properly with negative
+#  differences
+def minTimeToVisitAllPoints(points):
+    # if idx1 and idx2 increment equally its diagonal move ( 1 sec ) per
+    # increase
+    # if idx1 only +1 its vertical move (1 sec)
+    # if idx2 only +1 its horizontal move (1 sec)
+
+    # get idx increments and idx 2 increments
+    # move diagonally for times they are equal
+    # move vertically for times idx 1 is greater
+    # move horizontally for times idx 2 is greater
+
+    total_moves = 0
+    for i in range(len(points) - 1):
+        idx_1_moves = points[i + 1][0] - points[i][0]
+        idx_2_moves = points[i + 1][1] - points[i][1]
+        diagonal = abs(min(idx_1_moves, idx_2_moves))
+        vertical = 0
+        horizontal = 0
+
+        if idx_1_moves > idx_2_moves > 0:
+            vertical = abs(idx_1_moves - idx_2_moves)
+        elif idx_2_moves > idx_1_moves > 0:
+            horizontal = abs(idx_2_moves - idx_1_moves)
+
+        total_moves += diagonal + vertical + horizontal
+        print('idx1 moves:', idx_1_moves, 'idx2 moves:', idx_2_moves)
+        print('diagonal:', diagonal)
+        print('vertical:', vertical)
+        print('horizontal:', horizontal)
+
+    return total_moves
+
+# print(
+#     f'minTimeToVisitAllPoints([[3,2],[-2,2]])'
+#     f':{minTimeToVisitAllPoints(points)}')
