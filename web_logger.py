@@ -85,11 +85,5 @@ def prune_visits():
 
 
 log_visit()
-
-# print(f'visits after pruning: {prune_visits(visits)}')
-
-
-# print(visits)
-# print(visits[len(visits)-1] - visits[len(visits)-2])
 print(f'get_visits: {get_visits()}')
 print(visits)
