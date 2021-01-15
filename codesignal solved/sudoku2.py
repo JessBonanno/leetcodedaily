@@ -1,0 +1,157 @@
+
+"""
+*** Sudoku 2 ***
+----------------
+Sudoku is a number-placement puzzle. The objective is to fill a 9 × 9 grid with numbers in such a way that each column, each row, and each of the nine 3 × 3 sub-grids that compose the grid all contain all of the numbers from 1 to 9 one time.
+
+Implement an algorithm that will check whether the given grid of numbers represents a valid Sudoku puzzle according to the layout rules described above. Note that the puzzle represented by grid does not have to be solvable.
+
+Example
+
+For
+
+grid = [['.', '.', '.', '1', '4', '.', '.', '2', '.'],
+        ['.', '.', '6', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '1', '.', '.', '.', '.', '.', '.'],
+        ['.', '6', '7', '.', '.', '.', '.', '.', '9'],
+        ['.', '.', '.', '.', '.', '.', '8', '1', '.'],
+        ['.', '3', '.', '.', '.', '.', '.', '.', '6'],
+        ['.', '.', '.', '.', '.', '7', '.', '.', '.'],
+        ['.', '.', '.', '5', '.', '.', '.', '7', '.']]
+the output should be
+sudoku2(grid) = true;
+
+For
+
+grid = [['.', '.', '.', '.', '2', '.', '.', '9', '.'],
+        ['.', '.', '.', '.', '6', '.', '.', '.', '.'],
+        ['7', '1', '.', '.', '7', '5', '.', '.', '.'],
+        ['.', '7', '.', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '.', '.', '8', '3', '.', '.', '.'],
+        ['.', '.', '8', '.', '.', '7', '.', '6', '.'],
+        ['.', '.', '.', '.', '.', '2', '.', '.', '.'],
+        ['.', '1', '.', '2', '.', '.', '.', '.', '.'],
+        ['.', '2', '.', '.', '3', '.', '.', '.', '.']]
+the output should be
+sudoku2(grid) = false.
+
+The given grid is not correct because there are two 1s in the second column. Each column, each row, and each 3 × 3 subgrid can only contain the numbers 1 through 9 one time.
+"""
+
+grid = [[".", "4", ".", ".", ".", ".", ".", ".", "."],
+        [".", ".", "4", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", "1", ".", ".", "7", ".", "."],
+        [".", ".", ".", ".", ".", ".", ".", ".", "."],
+        [".", ".", ".", "3", ".", ".", ".", "6", "."],
+        [".", ".", ".", ".", ".", "6", ".", "9", "."],
+        [".", ".", ".", ".", "1", ".", ".", ".", "."],
+        [".", ".", ".", ".", ".", ".", "2", ".", "."],
+        [".", ".", ".", "8", ".", ".", ".", ".", "."]]
+
+
+# my solution
+# def sudoku2(grid):
+#     # check if any inner array contains duplicate numbers
+#     # if so return false
+#
+#     def check_horizontal(grid):
+#         for arr in grid:
+#             for i in range(len(arr)):
+#                 if arr[i] != '.' and arr[i] in arr[i + 1:]:
+#                     return False
+#         return True
+#
+#     def check_vertical(grid):
+#         col = 0
+#
+#         while col < len(grid[0]):
+#             temp_arr = []
+#             for arr in grid:
+#                 temp_arr.append(arr[col])
+#             for i in range(len(temp_arr)):
+#                 if temp_arr[i] != '.' and temp_arr[i] in temp_arr[i + 1:]:
+#                     return False
+#             col += 1
+#         return True
+#
+#     def check_subgrid(grid, row, col):
+#         print('row:', row)
+#         print('col:', col)
+#
+#         row = row
+#         # col = col
+#         step = 0
+#
+#         subgrid = []
+#         while step < len(grid[0]):
+#
+#             print('step:', step)
+#             colu = col
+#             temp_subgrid = []
+#
+#             for i in range(3):
+#                 temp_subgrid.append(grid[row][colu])
+#                 colu += 1
+#             subgrid.extend(temp_subgrid)
+#             if len(subgrid) == 9:
+#                 for i in range(len(subgrid)):
+#                     if subgrid[i] != '.' and subgrid[i] in subgrid[i + 1:]:
+#                         return False
+#
+#             if step == 8:
+#                 row = 0
+#                 col = 0
+#                 subgrid = []
+#             row += 1
+#             # col += 1
+#             step += 3
+#         return True
+#
+#     if not check_horizontal(grid):
+#         return False
+#     if not check_vertical(grid):
+#         return False
+#
+#     for i in range(0, 9, 3):
+#         for j in range(0, 9, 3):
+#             print('***********')
+#             sub = check_subgrid(grid, i, j)
+#             if not sub:
+#                 return False
+#     return True
+
+# most voted on codesignal
+def check_unique(nums):
+    s = set()
+    for num in nums:
+        if num == '.':
+            continue
+
+        if num in s:
+            return False
+        s.add(num)
+    return True
+
+
+def sudoku2(grid):
+    for line in grid:
+        if not check_unique(line):
+            return False
+
+    for i in range(9):
+        if not check_unique([line[i] for line in grid]):
+            return False
+
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            if not check_unique(
+                    grid[i][j:j + 3] + grid[i + 1][j:j + 3] + grid[i + 2][
+                                                              j:j + 3]):
+                return False
+
+    return True
+
+
+# print(sudoku2(grid))
+
