@@ -71,15 +71,17 @@ def gameOfLife(board):
             # for each cell count number of live neighbors.
             live_neighbors = 0
             for neighbor in neighbors:
+                # placeholders for row and column in case the checks are out
+                # of bounds we won't throw an error
                 # init r to the row + neighbor[0]
                 r = (row + neighbor[0])
-                # init c to the col + neighbor[0]
+                # init c to the col + neighbor[1]
                 c = (col + neighbor[1])
 
                 # check for neighbors IN BOUNDS ( in the copy )
                 # if r is less than the len of the board and r >= 0
                 # AND c is less than len of board[0] and c >= 0
-                # AND current neighbor is live
+                # AND current neighbor is live (1)
                 if (r < rows and r >= 0) and (c < cols and c >= 0) and (
                         copy_board[r][c] == 1):
                     # increment live neighbors

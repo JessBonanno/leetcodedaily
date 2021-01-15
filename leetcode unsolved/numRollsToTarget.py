@@ -39,7 +39,6 @@ The answer must be returned modulo 10^9 + 7.
 """
 
 
-# TODO
 def numRollsToTarget(d, f, target):
     # EDGE CASE if d = 1
     # if target is > f return 0
