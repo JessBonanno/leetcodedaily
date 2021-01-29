@@ -48,4 +48,7 @@ const judgeCircle = (moves) => {
 }
 
 let moves = "UD"
-console.log(judgeCircle(moves))
+// console.log(judgeCircle(moves))
+
+
+

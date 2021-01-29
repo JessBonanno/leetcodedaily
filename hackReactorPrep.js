@@ -1041,4 +1041,5 @@ function getDomain(url) {
   return url.substring(url.indexOf('.') + 1).substring(0, url.indexOf('.'))
 }
 
-console.log(getDomain(url))
+// console.log(getDomain(url))
+
