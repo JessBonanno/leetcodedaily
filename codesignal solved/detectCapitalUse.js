@@ -41,7 +41,7 @@
   if (firstChar === firstChar.toUpperCase() && rest.join('') === rest.join('').toLowerCase()) {
     return true
   }
-   return false
+      return false
  }
 
  console.log(detectCapitalUse('FlaG'))
